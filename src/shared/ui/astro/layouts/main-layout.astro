@@ -1,0 +1,22 @@
+---
+import '@fontsource-variable/montserrat';
+import '@shared/styles/global.css';
+
+type Props = {
+	title: string;
+};
+
+const { props } = Astro;
+---
+
+<!doctype html>
+<html data-theme="night" lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>{props.title}</title>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>
