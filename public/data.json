@@ -1,0 +1,82 @@
+[
+  {
+    "id": "1",
+    "make": "toyota",
+    "model": "land cruiser",
+    "manufactureYear": "2014",
+    "dateCreated": "2024-05-30T11:53:09.695Z",
+    "price": "35124"
+  },
+  {
+    "id": "2",
+    "make": "subaru",
+    "model": "forester",
+    "manufactureYear": "2018",
+    "dateCreated": "2024-05-26T11:12:09.695Z",
+    "price": "23586"
+  },
+  {
+    "id": "3",
+    "make": "toyota",
+    "model": "corolla",
+    "manufactureYear": "2023",
+    "dateCreated": "2024-06-01T05:51:09.695Z",
+    "price": "23874"
+  },
+  {
+    "id": "4",
+    "make": "volkswagen",
+    "model": "golf",
+    "manufactureYear": "2018",
+    "dateCreated": "2024-05-11T12:53:09.695Z",
+    "price": "19845"
+  },
+  {
+    "id": "5",
+    "make": "honda",
+    "model": "cr-v",
+    "manufactureYear": "2023",
+    "dateCreated": "2024-05-15T08:09:09.695Z",
+    "price": "23856"
+  },
+  {
+    "id": "6",
+    "make": "mercedes",
+    "model": "gla 250",
+    "manufactureYear": "2019",
+    "dateCreated": "2024-05-30T03:12:09.695Z",
+    "price": "39756"
+  },
+  {
+    "id": "7",
+    "make": "toyota",
+    "model": "camry",
+    "manufactureYear": "2021",
+    "dateCreated": "2024-06-10T11:51:09.695Z",
+    "price": "29764"
+  },
+  {
+    "id": "8",
+    "make": "mercedes",
+    "model": "gls 550d",
+    "manufactureYear": "2019",
+    "dateCreated": "2024-05-19T19:12:09.695Z",
+    "price": "41947"
+  },
+  {
+    "id": "9",
+    "make": "honda",
+    "model": "accord",
+    "manufactureYear": "2018",
+    "dateCreated": "2024-05-21T11:53:09.695Z",
+    "price": "21847"
+  },
+  {
+    "id": "10",
+    "make": "mercedes",
+    "model": "cla 200",
+    "manufactureYear": "2022",
+    "dateCreated": "2024-06-11T11:01:09.695Z",
+    "price": "38746"
+  }
+]
