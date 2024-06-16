@@ -1,7 +1,6 @@
 import pluginJs from '@eslint/js';
 import eslintPluginAstro from 'eslint-plugin-astro';
 import pluginImport from 'eslint-plugin-import';
-import eslintPluginSvelte from 'eslint-plugin-svelte';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
@@ -10,7 +9,6 @@ export default [
 	pluginJs.configs.recommended,
 	...tseslint.configs.recommended,
 	...eslintPluginAstro.configs.recommended,
-	...eslintPluginSvelte.configs['flat/recommended'],
 	{
 		plugins: {
 			import: pluginImport,
@@ -18,7 +16,6 @@ export default [
 		rules: {
 			'import/no-self-import': 'error',
 			'import/no-duplicates': 'error',
-			// "import/no-commonjs": "error",
 
 			'import/no-extraneous-dependencies': 'off',
 			'import/prefer-default-export': 'off',
@@ -40,6 +37,12 @@ export default [
 
 			'@typescript-eslint/no-unused-vars': 'error',
 			'@typescript-eslint/no-shadow': 'error',
+		},
+	},
+	{
+		files: ['**/pages/**/*.astro'],
+		rules: {
+			'no-console': 'off',
 		},
 	},
 	{

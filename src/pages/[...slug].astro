@@ -1,0 +1,97 @@
+---
+import SeeVehicleStats from '@widgets/vehicle-stats/see-vehicle-stats.svelte';
+import FilterByDate from '@widgets/vehicles-list-filters/filter-by-date.svelte';
+import FilterByMake from '@widgets/vehicles-list-filters/filter-by-make.svelte';
+import ResetFilters from '@widgets/vehicles-list-filters/reset-filters.svelte';
+
+import { getRemoteAPIVehiclesList } from '@entities/vehicle/api';
+import VehicleCard from '@entities/vehicle/ui/vehicle-card/vehicle-card.svelte';
+import {
+	parseVechileEnitiesList,
+	mapRemoteAPIVehicleToVehicleEntity,
+	mapVehiclesListToSelectOptions,
+	filterVehiclesList,
+	QUERY_KEYS,
+} from '@entities/vehicle/utils';
+
+import Layout from '@shared/ui/astro/layouts/main-layout.astro';
+import Show from '@shared/ui/astro/show/show.astro';
+
+export const prerender = false;
+
+// Getting data from remote API
+const data = await getRemoteAPIVehiclesList();
+
+// Checking data
+if (data === null) {
+	Astro.response.status = 404;
+	Astro.response.statusText = 'Something went wrong :(';
+}
+
+// Mapping data
+const vehicles = data!.map(mapRemoteAPIVehicleToVehicleEntity);
+
+// Checking for valid data
+try {
+	parseVechileEnitiesList(vehicles);
+} catch (e) {
+	console.log(e);
+
+	Astro.response.status = 404;
+	Astro.response.statusText = 'Something went wrong :(';
+}
+
+const makeOptions = mapVehiclesListToSelectOptions(vehicles);
+
+const filteredVihicles = filterVehiclesList(vehicles, Astro.url.search);
+
+const isFilteredVehiclesExist = filteredVihicles.length !== 0;
+---
+
+<Layout title="Home">
+	<div class="p-4 flex flex-col gap-4 md:p-8">
+		<header class="bg-base-100 grid grid-cols-1 gap-4 lg:grid-cols-2">
+			<div class="col-span-2 lg:col-span-1">
+				<FilterByMake client:load key="make" options={makeOptions} query={Astro.url.search || ''} />
+			</div>
+
+			<div class="col-span-2 lg:col-span-1">
+				<FilterByDate
+					client:load
+					dateFromKey={QUERY_KEYS.DATE_FROM}
+					dateToKey={QUERY_KEYS.DATE_TO}
+					query={Astro.url.search || ''}
+				/>
+			</div>
+
+			<div class="col-span-2 flex items-center justify-center">
+				<ResetFilters client:load />
+			</div>
+		</header>
+
+		<hr />
+
+		<main>
+			<div class="grid grid-flow-dense grid-cols-2 gap-4 lg:grid-cols-4">
+				{
+					filteredVihicles.map(({ model, make, price, manufactureYear, dateCreated }) => (
+						<VehicleCard
+							make={make}
+							model={model}
+							price={price}
+							manufactureYear={manufactureYear}
+							dateCreated={dateCreated}
+						/>
+					))
+				}
+			</div>
+		</main>
+
+		<Show when={isFilteredVehiclesExist}>
+			<hr />
+			<footer>
+				<SeeVehicleStats query={Astro.url.search} />
+			</footer>
+		</Show>
+	</div>
+</Layout>

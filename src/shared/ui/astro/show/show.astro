@@ -1,0 +1,11 @@
+---
+type Props = {
+	when: boolean;
+};
+
+const { props } = Astro;
+---
+
+<Fragment>
+	{props.when && <slot />}
+</Fragment>
